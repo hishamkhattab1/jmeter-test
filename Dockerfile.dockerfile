@@ -1,6 +1,6 @@
 # inspired by https://github.com/hauptmedia/docker-jmeter  and
 # https://github.com/hhcordero/docker-jmeter-server/blob/master/Dockerfile
-FROM alpine:3.12
+FROM alpine
 
 ARG JMETER_VERSION="5.6.3"
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
@@ -21,7 +21,7 @@ RUN    apk update \
         && rm -rf /var/cache/apk/* \
         && mkdir -p /tmp/dependencies  \
         && curl -L --silent ${JMETER_DOWNLOAD_URL} >  /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz  \
-        && mkdir -p /opt  \
+        && mkdir -p /opt/testResults  \
         && tar -xzf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
         && rm -rf /tmp/dependencies
 
